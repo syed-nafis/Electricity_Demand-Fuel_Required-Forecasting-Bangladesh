@@ -1,0 +1,182 @@
+power_station,area,fuel_type,installed_capacity,present_capacity,producer
+Ghorasal Repowered CCPP:Unit-3 (GT,Dhaka,Gas,260,260,PDB
+Ghorasal Repowered CCPP Unit-4,Dhaka,Gas,210,180,PDB
+Ghorasal TPP Unit-5,Dhaka,Gas,210,190,PDB
+Ghorasal 365 MW CCPP Unit-7,Dhaka,Gas,365,365,PDB
+Ghorashal 78.5 MW PP(MAX),Dhaka,Gas,0,0,QRPP
+Ghorashal 108 MW PP (Regent),Dhaka,Gas,108,108,IPP
+Haripur GTPP ,Dhaka,Gas,32,20,PDB
+Haripur  412 MW CCPP,Dhaka,Gas,412,400,EGCB
+Haripur 360 MW CCPP(HPL),Dhaka,Gas,0,0,IPP
+Meghnaghat 450 MW CCPP(MPL),Dhaka,Gas,450,450,IPP
+Meghnaghat 100 MW(IEL),Dhaka,HFO,0,0,NENP
+Meghnaghat CCPP(Summit),Dhaka,Gas,335,335,IPP
+Madanganj 102 PP(Summit),Dhaka,HFO,0,0,NENP
+Madanganj-55 MW PP(Summit),Dhaka,HFO,55,55,IPP
+Keraniganj 100 MW PP (Powerpac),Dhaka,HFO,100,75,NENP
+Narshingdi 22 MW PP  (Doreen),Dhaka,Gas,22,22,"SIPP, REB"
+210 MW Siddhirgonj TPP,Dhaka,Gas,210,115,PDB
+Siddhirgonj 2*120 MW GTPP ,Dhaka,Gas,210,210,EGCB
+Siddhirganj 335 MW CCPP,Dhaka,Gas,335,335,EGCB
+Gagnagar 102 MW PP (Digital Power),Dhaka,HFO,102,102,IPP
+Katpotti 52 MW PP (Sinha),Dhaka,HFO,51,0,IPP
+Kamalaghat 54 MW PP(Banco Energy),Dhaka,HFO,54,54,IPP
+Kodda 150 MW PP,Dhaka,HFO,149,149,BPDB-RPCL
+Manikganj 55 MW PP (Northern),Dhaka,HFO,55,55,IPP
+Nababganj 55 MW PP (Southern power ),Dhaka,HFO,55,55,IPP
+Bosila 108 MW PP(CLC),Dhaka,HFO,108,0,IPP
+"Summit Power,(Madhabdi+Ashulia)",Dhaka,Gas,80,80,"SIPP,REB"
+Maona 33 MW PP(Summit),Dhaka,Gas,33,33,"SIPP,REB"
+Rupganj 33 MW PP(Summit) ,Dhaka,Gas,33,33,"SIPP,REB"
+Gazipur 52 MW PP,Dhaka,HFO,52,52,RPCL
+Tongi 80 MW GTPP,Dhaka,Gas,105,105,PDB
+Kodda 300 MW PP Unit-2 (Summit) ,Dhaka,HFO,300,300,IPP
+Bramhangoan 100 MW PP (Aggreko),Dhaka,HSD,0,0,IPP
+Aurahati 100MW PP (Aggreko),Dhaka,HSD,0,0,IPP
+Kodda 149 MW PP Unit-1 (Summit) ,Dhaka,HFO,149,149,IPP
+Gazipur 100 MW PP,Dhaka,HFO,105,105,RPCL
+Meghnaghat 104 MW PP (OPCL),Dhaka,HFO,104,104,IPP
+Manikgonj 162MW PP(MPGL),Dhaka,HFO,162,162,IPP
+Spectra Solar Plant Ltd.,Dhaka,Solar,35,35,IPP
+Kanchan Purbachal Power Generation  Ltd.,Dhaka,HFO,55,55,IPP
+Meghnaghat Unique power,Dhaka,Gas,584,584,IPP
+Summit Meghanghat-2 589 MW(Gas),Dhaka,Gas,583,583,IPP
+JERA Meghnaghat Power Limited,Dhaka,Gas,0,0,IPP
+Chattogram TPP-1,Chattogram,Gas,210,180,PDB
+Chattogram TPP-2,Chattogram,Gas,210,180,PDB
+Raozan 25 MW PP,Chattogram,HFO,25,25,RPCL
+Teknaf  20MW PP (Solartech),Chattogram,Solar,20,20,IPP
+Patenga 50MW PP (Baraka),Chattogram,HFO,50,50,IPP
+"Karnaphuli Hydro PP Unit-1,2,3,4, 5",Chattogram,Hydro,230,230,PDB
+Sikalbaha 225MW CCPP,Chattogram,Gas/HSD,225,225,PDB
+Sikalbaha Peaking GT,Chattogram,Gas/HSD,150,150,PDB
+Sikalbaha 105 MW PP (Baraka Sikalbaha),Chattogram,HFO,105,105,IPP
+Hathazari 100 MW peaking PP,Chattogram,HFO,98,98,PDB
+Dohazari -Kalaish 100 MW Peaking,Chattogram,HFO,102,102,PDB
+Juldah 100 MW Unit-1 (Acorn),Chattogram,HFO,0,0,NENP
+Juldah 100 MW PP Unit-3 (Acorn),Chattogram,HFO,100,100,IPP
+Barabkunda  22 MW PP (Regent),Chattogram,Gas,0,0,"SIPP, PDB"
+"Malancha, Ctg. EPZ (United)",Chattogram,Gas,,0,
+Chattogram 108 MW PP (ECPV),Chattogram,HFO,108,108,IPP
+Kaptai 7 MW  Solar PP,Chattogram,Solar,7,7,PDB
+Anwara 300 MW PP (United),Chattogram,HFO,300,300,IPP
+Jodiac Power,Chattogram,HFO,54,54,IPP
+Karnaphuli Power Ltd.,Chattogram,HFO,110,110,IPP
+Juldah unit-2 (Acorn),Chattogram,HFO,100,100,IPP
+Anlima Energy Ltd.,Chattogram,HFO,116,116,IPP
+Mirsharai 150 MW,Chattogram,HFO,163,163,BPDB-RPCL
+SS Power I,Chattogram,Coal,1224,1224,IPP
+Cox's Bazar Wind,Chattogram,Wind,60,60,IPP
+Matarbari 2*600 MW (CPGCL),Chattogram,Coal,1150,1150,CPGCL
+Mirsharai 150 MW (Gas),Chattogram,Gas,0,0,BPDB-RPCL
+Ashuganj TPP Unit- 3,Cumilla,Gas,0,0,APSCL
+Ashuganj TPP Unit- 4,Cumilla,Gas,0,0,APSCL
+Ashuganj TPP Unit- 5,Cumilla,Gas,0,0,APSCL
+Ashuganj 225 MW  CCPP,Cumilla,Gas,221,221,APSCL
+Ashuganj 450 MW CCPP(North),Cumilla,Gas,360,360,APSCL
+Ashuganj 450 MW CCPP(South),Cumilla,Gas,360,360,APSCL
+Ashuganj 420 MW CCPP(East),Cumilla,Gas,400,400,APSCL
+Ashuganj 50 MW PP,Cumilla,Gas,53,45,APSCL
+Ashuganj 55 MW PP  (Precision),Cumilla,Gas,55,55,NENP
+Ashuganj 195 MW PP (APSCL-United),Cumilla,Gas,195,195,IPP
+Ashuganj  51 MW PP (Midland),Cumilla,Gas,51,51,IPP
+Ashuganj 150 MW PP (Midland),Cumilla,HFO,150,150,IPP
+Titas 50 MW Peaking PP,Cumilla,HFO,52,52,PDB
+Chandpur 150 MW CCPP,Cumilla,Gas,163,163,PDB
+Chandpur 200 MW (Desh energy),Cumilla,HFO,200,200,IPP
+Feni 11 MW PP  (Doreen),Cumilla,Gas,11,11,"SIPP, REB"
+Impoprt (Tripura),Cumilla,,160,160,Imported power
+Jangalia 33 MW PP (Summit),Cumilla,Gas,0,0,"SIPP, PDB"
+Jangalia 52 MW PP (Lakdanavi),Cumilla,HFO,52,52,IPP
+Cumilla 25 MW PP (Summit),Cumilla,Gas,25,25,"SIPP, REB"
+Daudkandi 200 MW PP (B.Trac),Cumilla,HSD,0,0,IPP
+Feni Lanka Power,Cumilla,HFO,114,114,IPP
+Chowmuhani 113 MW,Cumilla,HFO,113,113,IPP
+Chandpur 115(Doreen),Cumilla,HFO,115,115,IPP
+Sonagazi 75 MW Solar Plant,Cumilla,Solar,75,75,EGCB
+RPCL 210MW CCPP,Mymensingh,Gas,210,202,IPP
+Jamalpur 95 MW PP(Powerpac),Mymensingh,HFO,95,0,IPP
+Sarishabari 3 MW Solar Plant,Mymensingh,Solar,3,3,IPP
+Mymensingh 200 MW PP (United),Mymensingh,HFO,200,200,IPP
+Jamalpur 115 MW PP (United),Mymensingh,HFO,115,115,IPP
+Sutiakhali 50 MW Solar PP,Mymensingh,Solar,50,50,IPP
+Tangail Palli Power Gen 22 MW,Mymensingh,HFO,22,22,IPP
+Bhairob 54.5 MW,Mymensingh,HFO,54,54,IPP
+Sreepur 150 MW,Mymensingh,HFO,0,0,BPDB-RPCL
+Fenchugonj CCPP Phase-1,Sylhet,Gas,97,70,PDB
+Fenchugonj CCPP Phase-2,Sylhet,Gas,104,90,PDB
+Kushiara 163 MW CCPP (KP),Sylhet,Gas,163,163,IPP
+Shajibazar 330 MW CCPP,Sylhet,Gas,330,330,PDB
+Fenchugonj 51 MW PP  (Barakatullah),Sylhet,Gas,0,0,RPP
+Fenchuganj  44 MW (Energyprima),Sylhet,Gas,50,50,NENP
+Hobiganj  11 MW PP Cofidence-E,Sylhet,Gas,11,11,"SIPP, REB"
+Shahjibazar GTPP Unit- 8 & 9,Sylhet,Gas,70,66,PDB
+Shahjibazar 86 MW PP (Shahjibazar),Sylhet,Gas,86,86,RPP
+Shahjibazar 100 MW GTPP,Sylhet,Gas,100,100,PDB
+Sylhet 225 MW CCPP,Sylhet,Gas,231,231,PDB
+Sylhet  20 MW GTPP,Sylhet,Gas,20,20,PDB
+Sylhet  50 MW PP (EPL),Sylhet,Gas,0,0,NENP
+Shahjahanulla 25 MW PP,Sylhet,Gas,25,25,"SIPP, REB"
+Bibiana-II 341 MW CCPP (Summit),Sylhet,Gas,341,341,IPP
+Bibiyana-III  400 MW CCPP,Sylhet,Gas,400,400,PDB
+Sylhet 10MW PP (Desh),Sylhet,Gas,0,0,RPP
+Bibiyana South 400 MW,Sylhet,Gas,383,383,PDB
+Bheramara GTPP Unit-3,Khulna,HSD,20,16,PDB
+Bheramara (HVDC ),Khulna,0,1000,1000,Imported power
+Khulna 115 PP MW (KPCL-2),Khulna,HFO,0,0,NENP
+Faridpur 50 MW Peaking PP,Khulna,HFO,54,54,PDB
+Khulna  225 MW CCPP,Khulna,HSD,230,230,NWPGCL
+Gopalganj 100 MW Peaking PP,Khulna,HFO,109,109,PDB
+Bheramara 410 MW CCPP,Khulna,Gas,410,410,NWPGCL
+Noapara 40 MW PP (Khanjahan Ali),Khulna,HFO,0,0,NENP
+Noapara 100 MW PP (Bangla Trac),Khulna,HSD,0,0,IPP
+Rupsha 105 MW PP (Orion rupsha),Khulna,HFO,105,105,IPP
+Madhumati 100 MW PP,Khulna,HFO,105,105,NWPGCL
+Mongla Orion 100 MW Solar PP,Khulna,Solar,100,100,IPP
+Khulna 330 MW CCPP (OIL),Khulna,Gas/HSD,336,336,PDB
+Rampal 1320 MW (BIFPCL),Khulna,Coal,1234,1234,NTPC&BPDB
+Kulna 225 MW CCPP (GAS),Khulna,Gas,0,0,NWPGCL
+Nepal,Khulna,0,0,0,Imported power
+Barisal 110 MW PP (Summit ),Barisal,HFO,110,110,IPP
+Bhola  33 MW PP (Venture),Barisal,Gas,40,10,NENP
+Bhola 225 MW  CCPP,Barisal,Gas,194,194,PDB
+Bhola 95 MW PP (Aggreko),Barisal,Gas,0,0,QRPP
+Payra 1320 MW,Barisal,Coal,1244,1244,BCPCL
+Bhola Nutan Biddut BD LTD,Barisal,Gas,220,220,IPP
+United Payra Power Ltd.,Barisal,HFO,150,150,IPP
+Barisal 307 MW,Barisal,Coal,307,307,IPP
+Barisal 1 MW Solar Plant,Barisal,Solar,1,1,PDB
+Baghabari 71 MW GTPP,Rajshahi,Gas,71,71,PDB
+Baghabari 100 MW GTPP,Rajshahi,Gas,100,100,PDB
+Baghabari  50 MW Peaking PP,Rajshahi,HFO,52,52,PDB
+Bera 70 MW Peaking PP,Rajshahi,HFO,71,71,PDB
+Amnura 50 MW PP(Sinha),Rajshahi,HFO,50,28,NENP
+Katakhali 50 MW PP (Northern),Rajshahi,HFO,0,0,QRPP
+Katakhali 50 MW Peaking PP,Rajshahi,HFO,50,50,PDB
+Sirajgonj 225MW CCPP Unit-1,Rajshahi,Gas/HSD,210,210,NWPGCL
+Sirajgonj 225MW CCPP Unit-2,Rajshahi,Gas/HSD,220,220,NWPGCL
+Sirajgonj 225MW CCPP Unit-3,Rajshahi,Gas/HSD,220,220,NWPGCL
+Sirajgonj 400 MW CCPP Unit-4,Rajshahi,Gas/HSD,414,414,"IPP, SNWPGCL"
+Santahar  50 MW Peaking PP,Rajshahi,HFO,50,50,PDB
+Bogra 22 MW PP (GBB),Rajshahi,Gas,0,0,RPP
+Bogura 20 MW PP (Energyprima),Rajshahi,Gas,0,0,NENP
+Ullapara 11 MW PP  (Summit),Rajshahi,Gas,11,11,"SIPP, REB"
+Natore 52 MW PP (Rajlanka),Rajshahi,HFO,52,52,IPP
+Chapainawabganj 100 MW Peaking PP,Rajshahi,HFO,104,104,PDB
+Baghabari 200 MW PP (Paramount),Rajshahi,HSD,0,0,IPP
+Bagura 113 MW PP (Confidence)-2,Rajshahi,HFO,113,113,IPP
+Confidence Power Bogura Unit-1 113 MW,Rajshahi,HFO,113,113,IPP
+Sirajgonj 6.55 MW Solar,Rajshahi,Solar,6,6,NWPGCL
+Adani Power Jharkhanda Ltd,Rajshahi,Coal,1496,1496,Imported power
+Sirajganj 68 MW Solar Park,Rajshahi,Solar,68,68,IPP
+Pabna Solar 100 MW,Rajshahi,Solar,0,0,IPP
+Barapukuria TPP Unit-1,Rangpur,Coal,125,85,PDB
+Barapukuria TPP  Unit-2,Rangpur,Coal,125,85,PDB
+Barapukuria 275 MW TPP Unit-3,Rangpur,Coal,274,274,PDB
+Rangpur 20 MW  GTPP,Rangpur,HSD,20,20,PDB
+Saidpur 20 MW GTPP,Rangpur,HSD,20,20,PDB
+Rangpur 113 MW PP (Confidence),Rangpur,HFO,113,113,IPP
+Sympa Solar Power 8MW,Rangpur,Solar,8,8,IPP
+Energypac Power Venture Thakurgaon Ltd.,Rangpur,HFO,115,115,IPP
+Intraco Solar  30 MW,Rangpur,Solar,30,30,IPP
+Teesta Solar Limited,Rangpur,Solar,200,200,IPP

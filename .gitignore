@@ -1,0 +1,14 @@
+# Ignore entire 'daily_report copy' folder
+daily_report\ copy/
+
+# Ignore everything in 'daily_report/' except one file
+daily_report/*
+!daily_report/2024-12-31.xlsm
+
+# Ignore everything in 'daily_report (2014-01-01 to 2018-12-31)/' except one file
+daily_report\ \(2014-01-01\ to\ 2018-12-31\)/*
+!daily_report\ \(2014-01-01\ to\ 2018-12-31\)/2018-12-31.xlsm
+
+# Ignore everything in 'monthly_report/' except one file
+monthly_report/*
+!monthly_report/September-2023.xlsx
