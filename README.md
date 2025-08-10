@@ -1,10 +1,17 @@
 ## Electricity Demand + Required Fuel Forecasting - Bangladesh
 
-This project automates the data gathering and processing pipeline for forecasting electricity demand in Bangladesh, as well as estimating the required fuel to meet that demand. The scripts provided allow you to download daily reports from the Power Grid Company of Bangladesh (PGCB), process and extract relevant data, and check for missing or misnamed files.
+This project automates the data gathering and processing pipeline for forecasting electricity demand in Bangladesh, as well as estimating the required fuel to meet that demand. The scripts provided allow you to download daily reports from the Power Grid Company of Bangladesh (PGCB), process and extract relevant data.
 
 ## Data Source
 
-All raw data is sourced from the [Power Grid Company of Bangladesh (PGCB)](https://www.pgcb.gov.bd/).
+All raw data is sourced from [Power Grid Company of Bangladesh (PGCB)](https://www.pgcb.gov.bd/).
+
+## Features Coming soon
+
+  - `Automating ETL with APACHE airflow + docker`
+  - `Supabase integration`
+  - `API endpoint`
+  - `Public Power-BI dashboard` 
 
 ## Project Structure
 
