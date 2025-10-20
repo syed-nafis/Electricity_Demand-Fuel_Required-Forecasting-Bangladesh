@@ -12,3 +12,28 @@ daily_report\ \(2014-01-01\ to\ 2018-12-31\)/*
 # Ignore everything in 'monthly_report/' except one file
 monthly_report/*
 !monthly_report/September-2023.xlsx
+
+#ignoring my python virtual environment folder
+env
+
+# Ignore .env file
+.env
+
+# macOS system files
+# macOS junk
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# VSCode settings
+.vscode/
+
+# Ignore all CSVs by default
+*.csv
+
+# --- Exceptions ---
+# Keep important extracted data files
+!extracted_data/
+!extracted_data/*.csv

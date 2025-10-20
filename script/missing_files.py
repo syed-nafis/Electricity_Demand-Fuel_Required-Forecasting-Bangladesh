@@ -2,9 +2,8 @@ import os
 import re
 import argparse
 from datetime import datetime, timedelta
+from rename_files_dir import check_daily_reports_folder
 
-# set your path here
-path = " "
 
 def find_missing_dates(directory):
     # Define date pattern in filenames, assuming format like yyyy-mm-dd in filenames
@@ -58,11 +57,21 @@ def find_missing_dates(directory):
 
 if __name__ == "__main__":
     # Parse command-line arguments
-    parser = argparse.ArgumentParser(description="Check if all the files provided in PGCB daily report are downloaded")
-    parser.add_argument("--path", help="Path to the directory to check if it contains all the files provided in PGCB daily report.")
+    parser = argparse.ArgumentParser(description="Check if all the files provided in PGCB daily report are downloaded. " \
+                                                "Must be run after after all the files are downloaded and renamed to standard format." \
+                                                "Run `python rename_files_dir.py --path <path_to_daily_reports>` first if files are not renamed." \
+                                                " If no path is provided, current working directory will be used. It will look for 'daily_reports' folder in the current directory.")
+    parser.add_argument("--path", help="Path to the dfolder that contains all the PGCB daily report.")
     args = parser.parse_args()
 
-    path = args.path if args.path else path
+    path = args.path if args.path else os.getcwd()
+    # If path not provided, check in current directory if "daily_reports" folder exists
+    if not args.path:
+        if check_daily_reports_folder(path):   
+            path = check_daily_reports_folder(path)
+        else:
+            print("Error: 'daily_reports' folder not found in the current directory. Please provide a valid path.")
+            exit(1)
 
     # Call the function with the provided directory
     print(f"Checking for missing dates in {path}...")

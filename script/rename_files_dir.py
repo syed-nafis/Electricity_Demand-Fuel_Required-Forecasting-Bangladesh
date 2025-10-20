@@ -2,18 +2,17 @@ import os
 import re
 import argparse
 from datetime import datetime
+from config import date_patterns, special_cases
 
-# Set path for the directory to rename files
-path = " "
+# check if there is a folder named "daily_reports" in the current directory
+def check_daily_reports_folder(path):
+    current_directory = path
+    daily_reports_path = os.path.join(current_directory, "daily_reports")
+    if not os.path.exists(daily_reports_path):
+        return False
+    return daily_reports_path
 
-def standardize_date_format(directory):
-    # Define the date patterns to match various formats
-    date_patterns = [
-        r"(\d{2})[-._](\d{1,2})[-._](\d{2})",  # dd-mm-yy or dd.mm.yy or dd_mm_yy
-        r"(\d{2})[-._](\d{1,2})[-._](\d{4})",  # dd-mm-yyyy or dd.mm.yyyy or dd_mm_yyyy
-        r"(\d{2})(\d{1,2})[-._](\d{4})",      # ddmm-yyyy
-        r"(\d{2})[-._](\d{1,2})(\d{4})"       # dd-mmmyyyy
-    ]
+def rename_files(directory):
     
     # Pattern to detect already correctly formatted files
     desired_format_pattern = re.compile(r"^\d{4}-\d{2}-\d{2}\.\w+$")
@@ -23,18 +22,6 @@ def standardize_date_format(directory):
     
     # Detect duplicate files ending with "(1)", "(2)", etc.
     duplicate_pattern = re.compile(r"\(\d+\)$")
-
-    # Special cases: filenames that should be directly renamed
-    special_cases = {
-        "Daily Report 31.2.2022.xlsm": "2022-12-31.xlsm",
-        "Daily Report 149.2.2023.xlsm": "2023-02-18.xlsm",
-        "Daily Report.xlsm": "2022-04-25.xlsm",
-        "Daily Report 13-10-2024.xlsm": "2024-11-13.xlsm",
-        "Daily Report  26-01-2021.xlsm": "2022-01-26.xlsm",
-        "Daily Report 04-11-219.xlsm": "2019-11-04.xlsm",
-        "Daily Report 149.2.2023.xlsm": "2023-02-19.xlsm",
-        "Daily Report 21-8-20223.xlsm": "2023-08-21.xlsm"
-    }
 
     # Iterate through all files in the directory
     for filename in os.listdir(directory):
@@ -126,8 +113,15 @@ if __name__ == "__main__":
     parser.add_argument("--path", help="Path to the directory containing the files to be renamed.")
     args = parser.parse_args()
   
-    path = args.path if args.path else path
-    
+    path = args.path if args.path else os.getcwd()
+    # In the path, check if there is a folder named "daily_reports"
+    if not args.path:
+        if check_daily_reports_folder(path):   
+            path = check_daily_reports_folder(path)
+        else:
+            print("Error: 'daily_reports' folder not found in the current directory. Please provide a valid path.")
+            exit(1)
+
     # Call the function with the provided directory
-    print(f"Renaming files in {args.path}...")
-    standardize_date_format(path)
+    print(f"Renaming files in {path}...")
+    rename_files(path)
