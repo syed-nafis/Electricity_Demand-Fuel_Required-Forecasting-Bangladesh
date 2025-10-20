@@ -36,4 +36,4 @@ __pycache__/
 # --- Exceptions ---
 # Keep important extracted data files
 !extracted_data/
-!extracted_data/*.csv
+!extracted_data/*.csvextracted_data/combined_powerplant_generation_data.csv
