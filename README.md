@@ -1,6 +1,7 @@
 ## Electricity Demand + Required Fuel Forecasting - Bangladesh
 
 This project automates the data gathering and processing pipeline for forecasting electricity demand in Bangladesh, as well as estimating the required fuel to meet that demand. The scripts provided allow you to download daily reports from the Power Grid Company of Bangladesh (PGCB), process and extract relevant data.
+code tested on daily_reports between jan 2019 - dec 2024.
 
 ## Data Source
 
@@ -16,14 +17,20 @@ All raw data is sourced from [Power Grid Company of Bangladesh (PGCB)](https://w
 ## Project Structure
 
 - `script/`
-  - `downloader.py`: Downloads daily electricity reports from the PGCB website using Selenium or BeautifulSoup4 in a new folder name "Daily Reports".
+  - `downloader.py`: Downloads daily electricity reports from the PGCB website using Selenium or BeautifulSoup4 in a new folder name "daily_reports".
       commandline options : 
-      - `path` : path of the folder where files would be downloaded
-      - `last_page_numer` : the last page number till which it should download to.
-      - `downloader` : selenium or bs4
+      `--path` : path of the folder where files would be downloaded
+      `--last_page_numer` : the last page number till which it should download to.
+      `--selenium` : use selenium downloader
+      `--bs4`: use BeautifulSoup4 downloader
         
   - `extract_area_wise_energy_demand_supply.py`: Extracts area-wise demand and supply data from downloaded Excel files.
-  - `extract_past_data.py.py`: currently extracts power_plant information from daily_reports in a .csv or .excl file 
+  - `extract_past_data.py.py`: currently extracts power_plant information from daily_reports in a .csv or .excl file with multithreading enabled
+      `--path` : path of the daily_reports folder
+      `--threads` : the number of threads to use, deafult = 0
+      `--excel` : combined excel output 
+      `--csv` : combined csv output
+    
   - `extract_powerplant_generation_data.py`: Extracts generation data per power plant.
   - `extract_data_from daily_report.py`: Extracts specific data from a daily report.
   - `monthly_report_script.py`: Processes monthly reports.
