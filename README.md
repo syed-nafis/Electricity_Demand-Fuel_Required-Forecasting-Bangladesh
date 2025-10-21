@@ -19,23 +19,22 @@ All raw data is sourced from [Power Grid Company of Bangladesh (PGCB)](https://w
 - `script/`
   - `downloader.py`: Downloads daily electricity reports from the PGCB website using Selenium or BeautifulSoup4 in a new folder name "daily_reports".
       commandline options : 
-      `--path` : path of the folder where files would be downloaded
-      `--last_page_numer` : the last page number till which it should download to.
-      `--selenium` : use selenium downloader
-      `--bs4`: use BeautifulSoup4 downloader
+      -`--path` : path of the folder where files would be downloaded
+      -`--last_page_numer` : the last page number till which it should download to.
+      -`--selenium` : use selenium downloader
+      -`--bs4`: use BeautifulSoup4 downloader
         
   - `extract_area_wise_energy_demand_supply.py`: Extracts area-wise demand and supply data from downloaded Excel files.
   - `extract_past_data.py.py`: currently extracts power_plant information from daily_reports in a .csv or .excl file with multithreading enabled
-      `--path` : path of the daily_reports folder
-      `--threads` : the number of threads to use, deafult = 0
-      `--excel` : combined excel output 
-      `--csv` : combined csv output
+      -`--path` : path of the daily_reports folder
+      -`--threads` : the number of threads to use, deafult = 0
+      -`--excel` : combined excel output 
+      -`--csv` : combined csv output
     
-  - `extract_powerplant_generation_data.py`: Extracts generation data per power plant.
-  - `extract_data_from daily_report.py`: Extracts specific data from a daily report.
-  - `monthly_report_script.py`: Processes monthly reports.
-  - `missing_files.py`: Checks for missing daily report files in a directory.
-  - `rename_files_dir.py`: Renames files for consistency.
+  - `extract_powerplant_generation_data.py`: Extracts generation data per power plant for daily_report.
+  - `monthly_report_script.py`: Downlaod monthly reports from PGCB.
+  - `missing_files.py`: Checks for missing daily_report files in a directory outputs the date. Prerequisite: run rename_files_dir.py to standardize the file names in a common format.
+  - `rename_files_dir.py`: Renames files for consistency. files are renamed to just the date of the file, to this format "yyyy-mm-dd"
 - `extracted_Data/`: Contains processed and extracted datasets.
 - `monthly_reports/` and `daily_reports/`: Contain example reports. Run the scripts to download and process the full set.
 
