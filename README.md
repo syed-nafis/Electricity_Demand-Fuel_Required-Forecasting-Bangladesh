@@ -25,11 +25,11 @@ All raw data is sourced from [Power Grid Company of Bangladesh (PGCB)](https://w
         - `--bs4`: use BeautifulSoup4 downloader
         
   - `extract_area_wise_energy_demand_supply.py`: Extracts area-wise demand and supply data from downloaded Excel files.
-  - `extract_past_data.py.py`: currently extracts power_plant information from daily_reports in a .csv or .excl file with multithreading enabled
-      -`--path` : path of the daily_reports folder
-      -`--threads` : the number of threads to use, deafult = 0
-      -`--excel` : combined excel output 
-      -`--csv` : combined csv output
+  - `extract_past_data.py.py`: currently extracts power_plant information from daily_reports in a .csv or .excl file with multithreading enabled.
+    -`--path` : path of the daily_reports folder
+    -`--threads` : the number of threads to use, deafult = 0
+    -`--excel` : combined excel output 
+    -`--csv` : combined csv output
     
   - `extract_powerplant_generation_data.py`: Extracts generation data per power plant for daily_report.
   - `monthly_report_script.py`: Downlaod monthly reports from PGCB.
