@@ -18,11 +18,11 @@ All raw data is sourced from [Power Grid Company of Bangladesh (PGCB)](https://w
 
 - `script/`
   - `downloader.py`: Downloads daily electricity reports from the PGCB website using Selenium or BeautifulSoup4 in a new folder name "daily_reports".
-      -commandline options : 
-      -`--path` : path of the folder where files would be downloaded
-      -`--last_page_numer` : the last page number till which it should download to.
-      -`--selenium` : use selenium downloader
-      -`--bs4`: use BeautifulSoup4 downloader
+        - commandline options : 
+          - `--path` : path of the folder where files would be downloaded
+          - `--last_page_numer` : the last page number till which it should download to.
+          - `--selenium` : use selenium downloader
+          - `--bs4`: use BeautifulSoup4 downloader
         
   - `extract_area_wise_energy_demand_supply.py`: Extracts area-wise demand and supply data from downloaded Excel files.
   - `extract_past_data.py.py`: currently extracts power_plant information from daily_reports in a .csv or .excl file with multithreading enabled
