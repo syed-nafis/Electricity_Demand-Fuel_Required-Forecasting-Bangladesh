@@ -18,7 +18,7 @@ All raw data is sourced from [Power Grid Company of Bangladesh (PGCB)](https://w
 
 - `script/`
   - `downloader.py`: Downloads daily electricity reports from the PGCB website using Selenium or BeautifulSoup4 in a new folder name "daily_reports".
-      commandline options : 
+      -commandline options : 
       -`--path` : path of the folder where files would be downloaded
       -`--last_page_numer` : the last page number till which it should download to.
       -`--selenium` : use selenium downloader
