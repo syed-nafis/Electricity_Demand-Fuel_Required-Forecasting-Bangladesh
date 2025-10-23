@@ -1,0 +1,14 @@
+# Extra Python deps baked into the Airflow image (on top of the base image).
+# Versions are resolved by the Airflow 2.10.5 constraint file (see Dockerfile),
+# so we DON'T pin packages it already constrains — pinning fights the constraint
+# and causes ResolutionImpossible. Only pin things the constraints don't cover.
+pandas                # constraint -> 2.1.4
+openpyxl
+xlrd                  # needed for the 2014-2018 .xls reports
+beautifulsoup4
+lxml
+requests
+pyarrow               # Parquet output (analytics layer)
+python-dotenv
+duckdb==1.1.3         # not in Airflow constraints -> safe to pin
+# supabase            # uncomment in Phase 4 (serving-layer load)

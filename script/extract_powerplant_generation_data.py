@@ -96,6 +96,63 @@ def process_daily_report(file_path):
 # For demonstration, process the single file you have
 
 
+def _hhmm(v):
+    """Normalize a YesterdayGen time label (datetime/time/'24:00') -> 'HH:MM' or None."""
+    import datetime as _dt
+    if isinstance(v, _dt.datetime):
+        v = v.time()
+    if isinstance(v, _dt.time):
+        return f"{v.hour:02d}:{v.minute:02d}"
+    s = str(v).strip()
+    if re.match(r"^\d{1,2}:\d{2}$", s):
+        return s if len(s) == 5 else "0" + s
+    return None
+
+
+def process_yesterdaygen_hourly(file_path):
+    """Extract the hourly MW-per-plant block from a 2019-2024 YesterdayGen sheet.
+    Returns long format: date, time (HH:MM), plant_name, mw. Columns past
+    'Eastern Grid Total' (fuel-mix/summary) and aggregate names are excluded."""
+    g = pd.read_excel(file_path, sheet_name='YesterdayGen', header=None)
+    col0 = g.iloc[:, 0].astype(str).str.strip()
+    hdr = col0[col0 == 'Plant Name'].index
+    kwh = col0[col0 == 'KWH'].index
+    if len(hdr) == 0 or len(kwh) == 0:
+        raise ValueError("YesterdayGen markers ('Plant Name'/'KWH') not found")
+    hdr, kwh = int(hdr[0]), int(kwh[0])
+
+    header = g.iloc[hdr].astype(str)
+    egt = header[header.str.contains('Eastern Grid Total', na=False)].index
+    end_col = int(egt[0]) + 1 if len(egt) else g.shape[1]
+
+    nonplant = re.compile(r"(?i)(total|grid|water level|shortage)")
+    cols = {}
+    for ci in range(1, end_col):
+        v = g.iloc[hdr, ci]
+        if pd.isna(v):
+            continue
+        name = str(v).strip()
+        if name and not nonplant.search(name):
+            cols[ci] = name
+
+    date = pd.to_datetime(os.path.basename(file_path).rsplit('.', 1)[0])
+    out = []
+    for ri in range(hdr + 1, kwh):
+        t = _hhmm(g.iloc[ri, 0])
+        if t is None:
+            continue
+        for ci, nm in cols.items():
+            out.append({"date": date, "time": t, "plant_name": nm, "mw": g.iloc[ri, ci]})
+    df = pd.DataFrame(out)
+    if not df.empty:
+        df["mw"] = pd.to_numeric(
+            df["mw"].astype(str).str.replace(r"[\s\xa0,]", "", regex=True)
+            .replace({"": None, "nan": None, "None": None}),
+            errors="coerce",
+        )
+    return df
+
+
 if __name__ == "__main__":
     path = ""
     parser = args.ArgumentParser(description="Extract powerplant_information from All daily reports")

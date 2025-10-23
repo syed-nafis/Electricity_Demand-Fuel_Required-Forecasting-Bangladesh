@@ -1,122 +1,130 @@
-## Electricity Demand + Required Fuel Forecasting - Bangladesh
+# Electricity Demand & Fuel Forecasting — Bangladesh (PGCB/NLDC)
 
-This project automates the data gathering and processing pipeline for forecasting electricity demand in Bangladesh, as well as estimating the required fuel to meet that demand. The scripts provided allow you to download daily reports from the Power Grid Company of Bangladesh (PGCB), process and extract relevant data.
-code tested on daily_reports between jan 2019 - dec 2024.
+Research-grade data pipeline over **Power Grid Company of Bangladesh (PGCB) / National
+Load Dispatch Center (NLDC)** daily operational reports. Downloads the public reports,
+extracts per-plant generation (daily totals + hourly MW), and loads them into a
+two-tier store for analysis and dashboards.
 
-## Data Source
+Data source: [pgcb.gov.bd](https://www.pgcb.gov.bd/) · coverage **2019-01-02 → present** (daily, auto-updating).
 
-All raw data is sourced from [Power Grid Company of Bangladesh (PGCB)](https://www.pgcb.gov.bd/).
+---
 
-## Features Coming soon
+## Architecture
 
-  - `Automating ETL with APACHE airflow + docker`
-  - `Supabase integration`
-  - `API endpoint`
-  - `Public Power-BI dashboard` 
-
-## Project Structure
-
-- `script/`
-  - `downloader.py`: Downloads daily electricity reports from the PGCB website using Selenium or BeautifulSoup4 in a new folder name "daily_reports".
-      - commandline options : 
-        - `--path` : path of the folder where files would be downloaded
-        - `--last_page_numer` : the last page number till which it should download to.
-        - `--selenium` : use selenium downloader
-        - `--bs4`: use BeautifulSoup4 downloader
-  - Extractors are tested on daily reports from `JAN 2019 - DEC 2024`
-  - `extract_area_wise_energy_demand_supply.py`: Extracts area-wise demand and supply data from downloaded daily_reports, sheet = 'Forecast'.
-  - `extract_past_data.py.py`: currently extracts power_plant information from daily_reports in a .csv or .excl file with multithreading enabled.
-      - `--path` : path of the daily_reports folder
-      - `--threads` : the number of threads to use, deafult = 0
-      - `--excel` : combined excel output 
-      - `--csv` : combined csv output
-    
-  - `extract_powerplant_generation_data.py`: Extracts daily electricity generation data per power plant from daily_reports, sheet = 'Yesterdaygen'.
-  - `extract_powerplant_info.py`: Extracts powerplant information from daily_reports, sheet = 'Forecast'.
-  - `monthly_report_downloader.py`: Download monthly reports from PGCB.
-  - `missing_files.py`: Checks for missing daily_report files in a directory outputs the date. Prerequisite: run rename_files_dir.py to standardize the file names in a common format.
-  - `rename_files_dir.py`: Rename files for consistency. files are renamed to just the date of the file, in this format "yyyy-mm-dd"
-- `extracted_Data/`: Contains processed and extracted datasets.
-- `monthly_reports/` and `daily_reports/`: Contain example reports. Run the scripts to download and process the full set.
-
-## How to Use
-
-### 1. Clone the Repository
-
-```bash
-git clone <repo-url>
-cd "Electricity Demand Forecasting - Bangladesh"
+```
+PGCB site ──► download ──► extract ──► ┌─ Parquet  (extracted_data/parquet/)   ← analytics / ML
+ (Airflow daily)            (format-      │     daily + hourly, full history, raw
+                             aware)       └─ Supabase (daily_plant_generation)   ← dashboard / SQL
+                                                serving table, plant-level, deduped
 ```
 
-### 2. Install Dependencies
+- **Tier 1 — Parquet** (DuckDB/pandas friendly): full-resolution, partitioned by day, free, unlimited. Where modeling happens.
+- **Tier 2 — Supabase Postgres**: small clean serving table for the dashboard (anon key + RLS).
+- Orchestrated by **Apache Airflow** (Docker Compose, LocalExecutor).
 
-- Ensure you have Python 3.x installed.
-- Install required packages (Selenium, pandas, etc.):
-  ```bash
-  pip install selenium pandas openpyxl webdriver-manager
-  ```
-  You may need additional packages depending on the script (e.g., `beautifulsoup4`, `requests`).
+### Report formats
+The PGCB sheet layout changed over time; extraction is format-aware:
+| Period | Generation sheet | Extractor |
+|--------|------------------|-----------|
+| 2019–2024 | `YesterdayGen` | `extract_powerplant_generation_data.py` (daily + `process_yesterdaygen_hourly`) |
+| 2025–present | `GenLog` / `Genlog` | `extract_genlog.py` (daily + hourly) |
 
-- For Selenium, ensure you have Google Chrome installed, as the scripts use ChromeDriver.
+`extract_genlog.process_generation_auto()` routes automatically by which sheet a file has.
 
-### 3. Download Daily Reports
+---
 
-Use the `downloader.py` script to download daily reports from the PGCB website.
+## Repository layout
 
-```bash
-python script/downloader.py --path <download_directory> --last_page_number 
+```
+.
+├── script/                     # extractors, downloaders, load layer
+│   ├── bs4_downloader.py            # pure-HTTP downloader (used by the pipeline)
+│   ├── selenium_downloader.py       # selenium variant (legacy)
+│   ├── extract_powerplant_generation_data.py  # YesterdayGen daily + hourly
+│   ├── extract_genlog.py            # GenLog (2025+) daily + hourly + auto-router
+│   ├── extract_powerplant_info.py   # plant metadata from Forecast sheet
+│   ├── extract_area_wise_energy_demand_supply.py
+│   ├── load.py                      # two-tier load: Parquet + Supabase upsert + state
+│   ├── rename_files_dir.py          # standardize filenames -> yyyy-mm-dd
+│   ├── missing_files.py             # gap detection
+│   └── config.py / db.py
+├── airflow/                    # the ETL stack
+│   ├── docker-compose.yaml          # postgres + webserver + scheduler (LocalExecutor)
+│   ├── Dockerfile / requirements.txt
+│   ├── supabase_schema.sql          # serving-table DDL (run once in Supabase)
+│   ├── .env.example                 # AIRFLOW_UID, Fernet, Supabase creds
+│   └── dags/
+│       ├── backfill_generation_2019_2024.py   # historical daily (YesterdayGen)
+│       ├── backfill_generation_2025_2026.py   # historical daily + hourly (GenLog)
+│       ├── backfill_hourly_2019_2024.py       # historical hourly (YesterdayGen)
+│       └── daily_incremental_etl.py           # ongoing @daily ingestion
+├── daily_report/               # 2019-2024 reports (.xlsm)
+├── daily_report (2025-01-01 to 2026-06-29)/   # 2025-2026 reports (.xlsx)
+├── extracted_data/             # CSV extracts + parquet/ analytics layer
+└── monthly_report/             # monthly reliability reports
 ```
 
-- `--path`: Directory where the downloaded files will be saved.
-- `--last_page_number`: (Optional) Last page number to download (default is 132 to download daily_reports till 2024-12-31). Set this is to the last page of the website
+---
 
-Example:
+## Quick start
+
+### 1. Python env (for the scripts / ad-hoc extraction)
 ```bash
-python script/download_daily_report.py --path ./daily_reports --last_page_number 132
+source env/bin/activate          # deps: pandas, openpyxl, xlrd, beautifulsoup4, requests, supabase, pyarrow, duckdb
 ```
 
-### 4. Check for Missing Files
-
-After downloading, you can check if any daily reports are missing:
-
+### 2. Airflow pipeline
 ```bash
-python script/missing_files.py --path <download_directory>
+cd airflow
+cp .env.example .env             # fill AIRFLOW_UID (50000 on macOS), Fernet/secret keys, Supabase creds
+docker compose build
+docker compose up airflow-init   # one-shot: db migrate + admin user
+docker compose up -d             # webserver + scheduler
+```
+UI: http://localhost:8080 (admin / admin). On macOS start Docker with `docker desktop start`.
+
+### 3. Supabase serving table
+Run `airflow/supabase_schema.sql` once in the Supabase SQL editor (creates `daily_plant_generation`).
+
+---
+
+## DAGs
+
+| DAG | Schedule | Does |
+|-----|----------|------|
+| `daily_incremental_etl` | `@daily` | finds reports newer than the last loaded date, downloads, extracts, two-tier loads. Idempotent, self-healing. |
+| `backfill_generation_2019_2024` | manual | daily per-plant generation for 2019–2024 → Parquet + Supabase |
+| `backfill_generation_2025_2026` | manual | daily + hourly for 2025–2026 → Parquet + Supabase |
+| `backfill_hourly_2019_2024` | manual | hourly MW series for 2019–2024 → Parquet |
+
+Backfills accept conf params, e.g. `{"start":"2024-12-01","end":"2024-12-31","max_files":5}`.
+
+---
+
+## Data layers
+
+**Parquet** (`extracted_data/parquet/`, partitioned by `year/month/day`):
+- `daily_plant_generation/` — `date, plant_name, electricity_gen, fuel_cost`
+- `hourly_plant_generation/` — `date, time, plant_name, mw` (STLF series)
+
+Query directly:
+```python
+import duckdb
+duckdb.sql("SELECT date, sum(mw) FROM 'extracted_data/parquet/hourly_plant_generation/**/*.parquet' GROUP BY date")
 ```
 
-Example:
-```bash
-python script/missing_files.py --path ./daily_reports
-```
+**Supabase** `daily_plant_generation` — PK `(date, plant_name)`, aggregate/total rows filtered out, idempotent upsert.
 
-### 5. Extract and Process Data
+Current scale (2019–2026): daily **485,483** rows; hourly **12,481,033** rows; Supabase serving table **~481k** rows.
 
-#### Area-wise Demand and Supply
-
-Extract area-wise demand and supply data from the downloaded Excel files:
-
-```bash
-python script/extract_area_wise_energy_demand_supply.py
-```
-
-- By default, the script expects the directory path and output CSV to be set in the script. Edit the variables `directory_path` and `output_csv` at the bottom of the script as needed.
-
-#### Other Extraction Scripts
-
-- `extract_powerplant_info.py`, `extract_powerplant_generation_data.py`, and `extract_data_from daily_report.py` are used for extracting specific information from the reports. Refer to the comments and variable settings at the top of each script for usage instructions.
-
-#### Renaming Files
-
-- If you need to rename files for consistency, use:
-  ```bash
-  python script/rename_files_dir.py
-  ```
+---
 
 ## Notes
 
-- The code is well-commented for ease of understanding and modification.
-- Only example reports are included by default. You must run the scripts to download and process the full datasets.
-- All extracted and processed data will be available in the `extracted_Data/` directory.
+- Reports use a bad TLS cert; downloaders run with `verify=False`.
+- Some reports store numbers as strings with non-breaking spaces — extractors coerce to numeric.
+- PGCB did not publish reports on a few dates (genuine gaps, not download misses).
+- **Security:** the ETL uses the Supabase `service_role` key (backend only, bypasses RLS). Never commit it or use it in a frontend — build dashboards with the `anon` key + RLS policies.
 
 ## License
-
-[MIT License](LICENSE) (or specify your license here) 
+[MIT](LICENSE)
