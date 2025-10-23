@@ -17,9 +17,15 @@ if __name__ == "__main__":
     last_page_number = args.last_page_number
     base_url = args.base_url
     
+    # Default to bs4 if neither is specified
+    if not args.bs4 and not args.selenium:
+        print("No downloader specified. Defaulting to BeautifulSoup downloader.")
+        args.bs4 = True
+
     if args.bs4:
         print("Using BeautifulSoup downloader : ")
         bs4_downloader(base_url, path, last_page_number)
+        
     if args.selenium:
         print("Using Selenium downloader : ")
         selenium_downloader(base_url, path, last_page_number)

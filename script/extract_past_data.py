@@ -30,7 +30,7 @@ def process_file(filename, path):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract powerplant_information from All daily reports")
     parser.add_argument("--path", help="Path to the directory where the downloaded files would be saved")
-    parser.add_argument("--threads", type=int, default=10, help="Number of threads for parallel processing")
+    parser.add_argument("--threads", type=int, default=0, help="Number of threads for parallel processing")
     parser.add_argument("--excel", action="store_true", help="Generate excel file")
     parser.add_argument("--csv", action="store_true", help="Generate csv file")
 
