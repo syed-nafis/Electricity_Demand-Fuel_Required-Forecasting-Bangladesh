@@ -23,18 +23,19 @@ All raw data is sourced from [Power Grid Company of Bangladesh (PGCB)](https://w
         - `--last_page_numer` : the last page number till which it should download to.
         - `--selenium` : use selenium downloader
         - `--bs4`: use BeautifulSoup4 downloader
-        
-  - `extract_area_wise_energy_demand_supply.py`: Extracts area-wise demand and supply data from downloaded Excel files.
+  Extractors are tested on daily reports from JAN 2019- DEC 2024
+  - `extract_area_wise_energy_demand_supply.py`: Extracts area-wise demand and supply data from downloaded daily_reports, sheet = 'Forecast'.
   - `extract_past_data.py.py`: currently extracts power_plant information from daily_reports in a .csv or .excl file with multithreading enabled.
       - `--path` : path of the daily_reports folder
       - `--threads` : the number of threads to use, deafult = 0
       - `--excel` : combined excel output 
       - `--csv` : combined csv output
     
-  - `extract_powerplant_generation_data.py`: Extracts generation data per power plant for daily_report.
-  - `monthly_report_script.py`: Downlaod monthly reports from PGCB.
+  - `extract_powerplant_generation_data.py`: Extracts daily electricity generation data per power plant from daily_reports, sheet = 'Yesterdaygen'.
+  - `extract_powerplant_info.py`: Extracts powerplant information from daily_reports, sheet = 'Forecast'.
+  - `monthly_report_downloader.py`: Download monthly reports from PGCB.
   - `missing_files.py`: Checks for missing daily_report files in a directory outputs the date. Prerequisite: run rename_files_dir.py to standardize the file names in a common format.
-  - `rename_files_dir.py`: Renames files for consistency. files are renamed to just the date of the file, to this format "yyyy-mm-dd"
+  - `rename_files_dir.py`: Rename files for consistency. files are renamed to just the date of the file, in this format "yyyy-mm-dd"
 - `extracted_Data/`: Contains processed and extracted datasets.
 - `monthly_reports/` and `daily_reports/`: Contain example reports. Run the scripts to download and process the full set.
 
@@ -60,10 +61,10 @@ cd "Electricity Demand Forecasting - Bangladesh"
 
 ### 3. Download Daily Reports
 
-Use the `download_daily_report.py` script to download daily reports from the PGCB website.
+Use the `downloader.py` script to download daily reports from the PGCB website.
 
 ```bash
-python script/download_daily_report.py --path <download_directory> --last_page_number <number_of_pages>
+python script/downloader.py --path <download_directory> --last_page_number 
 ```
 
 - `--path`: Directory where the downloaded files will be saved.
@@ -102,13 +103,6 @@ python script/extract_area_wise_energy_demand_supply.py
 #### Other Extraction Scripts
 
 - `extract_powerplant_info.py`, `extract_powerplant_generation_data.py`, and `extract_data_from daily_report.py` are used for extracting specific information from the reports. Refer to the comments and variable settings at the top of each script for usage instructions.
-
-#### Monthly Reports
-
-- Use `monthly_report_script.py` to process monthly reports. Edit the script as needed for your data and run:
-  ```bash
-  python script/monthly_report_script.py
-  ```
 
 #### Renaming Files
 
