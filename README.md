@@ -23,7 +23,7 @@ All raw data is sourced from [Power Grid Company of Bangladesh (PGCB)](https://w
         - `--last_page_numer` : the last page number till which it should download to.
         - `--selenium` : use selenium downloader
         - `--bs4`: use BeautifulSoup4 downloader
-  Extractors are tested on daily reports from JAN 2019- DEC 2024
+  - Extractors are tested on daily reports from `JAN 2019 - DEC 2024`
   - `extract_area_wise_energy_demand_supply.py`: Extracts area-wise demand and supply data from downloaded daily_reports, sheet = 'Forecast'.
   - `extract_past_data.py.py`: currently extracts power_plant information from daily_reports in a .csv or .excl file with multithreading enabled.
       - `--path` : path of the daily_reports folder
