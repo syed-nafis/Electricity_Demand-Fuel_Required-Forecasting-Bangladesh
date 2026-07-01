@@ -11,12 +11,10 @@ Data source: [pgcb.gov.bd](https://www.pgcb.gov.bd/) · coverage **2019-01-02 �
 
 ## Architecture
 
-```
-PGCB site ──► download ──► extract ──► ┌─ Parquet  (extracted_data/parquet/)   ← analytics / ML
- (Airflow daily)            (format-      │     daily + hourly, full history, raw
-                             aware)       └─ Supabase (daily_plant_generation)   ← dashboard / SQL
-                                                serving table, plant-level, deduped
-```
+![PGCB data pipeline](assets/pgcb_data_pipeline.svg)
+
+Airflow downloads and extracts PGCB reports daily; format-aware extraction fans out to a
+Parquet archive (analytics/ML) and a Supabase serving table (dashboard/SQL).
 
 - **Tier 1 — Parquet** (DuckDB/pandas friendly): full-resolution, partitioned by day, free, unlimited. Where modeling happens.
 - **Tier 2 — Supabase Postgres**: small clean serving table for the dashboard (anon key + RLS).
